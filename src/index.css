@@ -1,13 +1,88 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.jobs {
+  outline-style: solid;
+  background-color: rgb(192, 189, 189);
+}
+
+.genInfo {
+  outline-style: solid;
+  background-color: grey;
+}
+
+.education {
+  outline-style: solid;
+  background-color: rgb(236, 236, 236);
+}
+
+.delButton {
+  background-color: rgb(192, 62, 62);
+  padding: 15px 32px;
+}
+
+.editButton {
+  background-color: rgba(160, 180, 199, 0.801);
+  padding: 15px 32px;
+}
+
+.saveEditButton {
+  background-color: rgba(31, 214, 31, 0.527);
+  padding: 15px 32px;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+  outline-style: solid;
+}
+
+.title {
+  text-align: center;
+}
+
+.name {
+  font-size: xx-large;
+}
+
+@media print {
+  button {
+    display: none;
+  }
+  .jobs,
+  .genInfo,
+  .education {
+    outline-style: none;
+  }
+  html,
+  body {
+    width: 210mm;
+    height: 297mm;
+  }
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.cvName {
+  background: #1abc9c;
+  color: white;
+  font-size: xx-large;
 }
