@@ -16,6 +16,7 @@ const generalInfoReducer = (state, action) => {
         email: "",
         mobile: "",
         city: "",
+        summary: "",
       };
     case "GENINFO_EDIT":
       const newArray = [...state.data];

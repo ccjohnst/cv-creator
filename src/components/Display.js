@@ -1,4 +1,11 @@
 import defaultAvatar from "../assets/default.jpg";
+import city from "../assets/thumbnails/city.svg";
+import mobile from "../assets/thumbnails/mobile.svg";
+import email from "../assets/thumbnails/email.svg";
+
+const displaySymbol = (symbol) => (
+  <img src={symbol} style={{ width: "20px", height: "20px" }} />
+);
 
 const Item = ({
   item,
@@ -9,7 +16,8 @@ const Item = ({
   titleName,
   inputType,
   styleName,
-  id
+  id,
+  displaySymbol,
 }) => {
   if (isEdit === true) {
     return (
@@ -18,15 +26,27 @@ const Item = ({
           <strong>{titleName}</strong>
         </label>
         &nbsp;
-        <input
-          value={item}
-          autoFocus
-          name={name}
-          type={inputType}
-          category={category}
-          onChange={(e) => handleTextUpdate(e, name, category)}
-          id={id}
-        ></input>
+        {name === "summary" ? (
+          <textarea
+            value={item}
+            autoFocus
+            name={name}
+            type={inputType}
+            category={category}
+            onChange={(e) => handleTextUpdate(e, name, category)}
+            id={id}
+          ></textarea>
+        ) : (
+          <input
+            value={item}
+            autoFocus
+            name={name}
+            type={inputType}
+            category={category}
+            onChange={(e) => handleTextUpdate(e, name, category)}
+            id={id}
+          ></input>
+        )}
         <br />
       </>
     );
@@ -35,8 +55,10 @@ const Item = ({
       <div className={styleName}>
         <strong>
           {titleName}
-          {titleName && <>:</>} {item}{" "}
+          {titleName && <>:</>}
+          {displaySymbol}{" "}
         </strong>
+        <>{name === "name" ? <strong>{item}</strong> : <>{ item }</>}</>
         <br />
       </div>
     );
@@ -70,12 +92,11 @@ const DisplayGenInfo = ({
     return (
       <>
         <div className="genInfo">
-          <h2>General Info</h2>
           <DisplayAvatar avatar={avatar} />
           {data.map((item, index) => (
             <form key={item.id}>
               <Item
-                item={item.name}
+                item={item.name.toUpperCase()}
                 name="name"
                 handleTextUpdate={handleTextUpdate}
                 isEdit={item.isEdit}
@@ -87,27 +108,40 @@ const DisplayGenInfo = ({
               <Item
                 item={item.email}
                 name="email"
-                titleName="Email"
+                // titleName="Email"
                 handleTextUpdate={handleTextUpdate}
                 isEdit={item.isEdit}
                 category="GENINFO"
                 inputType="email"
                 id={item.id}
+                displaySymbol={displaySymbol(email)}
               />
               <Item
                 item={item.mobile}
                 name="mobile"
-                titleName="Mobile"
+                // titleName="Mobile"
                 handleTextUpdate={handleTextUpdate}
                 isEdit={item.isEdit}
                 category="GENINFO"
                 inputType="text"
                 id={item.id}
+                displaySymbol={displaySymbol(mobile)}
               />
               <Item
                 item={item.city}
                 name="city"
-                titleName="City"
+                // titleName="City"
+                handleTextUpdate={handleTextUpdate}
+                isEdit={item.isEdit}
+                category="GENINFO"
+                inputType="text"
+                id={item.id}
+                displaySymbol={displaySymbol(city)}
+              />
+              <Item
+                item={item.summary}
+                name="summary"
+                titleName="Summary"
                 handleTextUpdate={handleTextUpdate}
                 isEdit={item.isEdit}
                 category="GENINFO"

@@ -5,23 +5,34 @@ const InputWithLabel = ({
   inputValue,
   inputType,
 }) => {
+  // const displaySummary = () => {
+  //   if (summary === "name")
+  // }
   return (
     <>
       <label>{children}</label>
       &nbsp;
-      <input
-        name={name}
-        type={inputType}
-        onChange={(e) => onInputChange(e)}
-        value={inputValue}
-      ></input>
+      {name === "summary" ? (
+        <textarea
+          name={name}
+          type={inputType}
+          onChange={(e) => onInputChange(e)}
+          value={inputValue}
+        ></textarea>
+      ) : (
+        <input
+          name={name}
+          type={inputType}
+          onChange={(e) => onInputChange(e)}
+          value={inputValue}
+        ></input>
+      )}
       <br />
     </>
   );
 };
 
-const SelectAvatar = ({imgHandler}) => {
-
+const SelectAvatar = ({ imgHandler }) => {
   return (
     <>
       <input type="file" onChange={(e) => imgHandler(e)} />
@@ -66,6 +77,14 @@ const GeneralForm = ({ onFormInput, formSubmit, genValue, imgHandler }) => {
           inputType="text"
         >
           <strong>City</strong>
+        </InputWithLabel>
+        <InputWithLabel
+          name="summary"
+          onInputChange={onFormInput}
+          inputValue={genValue.summary}
+          inputType=""
+        >
+          <strong>Summary</strong>
         </InputWithLabel>
         <button type="submit" onClick={formSubmit}>
           Submit

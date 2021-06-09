@@ -26,6 +26,8 @@ import {
 - Sort out autofocus by using useEffect
 - Add form validation
 - Add avatar functionality
+- add header 
+- add footer (include flat icons credit)
 */
 
 function App() {
@@ -93,9 +95,9 @@ function App() {
 
   const handleGeneralSubmit = (e) => {
     e.preventDefault();
-    let { name, email, mobile, city, isEdit, isSubmit } = genInfo;
+    let { name, email, mobile, city, isEdit, isSubmit, summary } = genInfo;
     let id = uniqid();
-    let obj = { name, email, mobile, city, id, isEdit, isSubmit };
+    let obj = { name, email, mobile, city, id, isEdit, isSubmit, summary };
 
     dispatchGenInfo({
       type: "GENINFO_SUBMIT",
@@ -292,6 +294,7 @@ function App() {
                 isEdit={education.data}
                 handleTextUpdate={handleTextUpdate}
               />
+              
             </div>
           </div>
         </div>

@@ -3,6 +3,7 @@ const initialGenInfo = {
   email: "",
   mobile: "",
   city: "",
+  summary: "",
   isEdit: false,
   isDelete: false,
   data: [],
