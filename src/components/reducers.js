@@ -104,7 +104,7 @@ const jobsReducer = (state, action) => {
       const newArray = [...state.data];
       const index = newArray.findIndex((d) => action.id === d.id);
       newArray[index][action.field] = action.payload;
-      console.log(action.id)
+      console.log(action.id);
       return {
         ...state,
         ...state.data,
@@ -174,5 +174,7 @@ const educationReducer = (state, action) => {
       throw new Error();
   }
 };
+
+
 
 export { generalInfoReducer, jobsReducer, educationReducer };

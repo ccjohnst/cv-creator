@@ -3,10 +3,74 @@ import city from "../assets/thumbnails/city.svg";
 import mobile from "../assets/thumbnails/mobile.svg";
 import email from "../assets/thumbnails/email.svg";
 
-const displaySymbol = (symbol) => (
-  <img src={symbol} style={{ width: "20px", height: "20px" }} />
+const displaySymbol = (symbol, altName) => (
+  <img src={symbol} alt={altName} style={{ width: "20px", height: "20px" }} />
 );
 
+const DisplayChecked = ({ name, item, handleCurrentUpdate, id }) => {
+  if (name === "endDate" && item === "Present") {
+    return (
+      <label>
+        Current
+        <input
+          name={name}
+          onChange={(e) => handleCurrentUpdate(e, name)}
+          type="checkbox"
+          defaultChecked="true"
+          id={id}
+        ></input>
+      </label>
+    );
+  }
+  if (name === "endDate" && item !== "Present") {
+    return (
+      <label>
+        Current
+        <input
+          name={name}
+          onChange={(e) => handleCurrentUpdate(e, name)}
+          type="checkbox"
+          defautChecked="false"
+          id={id}
+        ></input>
+      </label>
+    );
+  } else {
+    return null;
+  }
+};
+
+const OptionButtons = ({
+  item,
+  handleEdit,
+  onRemoveItem,
+  saveArg,
+  editArg,
+  delArg,
+}) => {
+  return (
+    <>
+      {item.isEdit ? (
+        <button
+          className="saveEditButton"
+          onClick={(e) => handleEdit(e, item, saveArg)}
+        >
+          Save
+        </button>
+      ) : (
+        <button
+          className="editButton"
+          onClick={(e) => handleEdit(e, item, editArg)}
+        >
+          Edit
+        </button>
+      )}
+      <button className="delButton" onClick={() => onRemoveItem(item, delArg)}>
+        Delete
+      </button>
+    </>
+  );
+};
 const Item = ({
   item,
   name,
@@ -18,6 +82,9 @@ const Item = ({
   styleName,
   id,
   displaySymbol,
+  currentSelect,
+  checkBox,
+  handleCurrentUpdate,
 }) => {
   if (isEdit === true) {
     return (
@@ -47,22 +114,35 @@ const Item = ({
             id={id}
           ></input>
         )}
+        <DisplayChecked
+          name={name}
+          item={item}
+          handleCurrentUpdate={handleCurrentUpdate}
+          id={id}
+        />
         <br />
       </>
     );
-  } else {
+  }
+  if (name === "endDate" && item === "Present") {
     return (
-      <div className={styleName}>
-        <strong>
-          {titleName}
-          {titleName && <>:</>}
-          {displaySymbol}{" "}
-        </strong>
-        <>{name === "name" ? <strong>{item}</strong> : <>{ item }</>}</>
+      <div className={styleName} style={{ display: "inline-block" }}>
+        <>- {item}</>
         <br />
       </div>
     );
   }
+  return (
+    <div className={styleName}>
+      <strong>
+        {titleName}
+        {titleName && <>:</>}
+        {displaySymbol}{" "}
+      </strong>
+      <>{name === "name" ? <strong>{item}</strong> : <>{item}</>}</>
+      <br />
+    </div>
+  );
 };
 
 const DisplayAvatar = ({ avatar }) => {
@@ -91,8 +171,8 @@ const DisplayGenInfo = ({
   } else {
     return (
       <>
+        <DisplayAvatar avatar={avatar} />
         <div className="genInfo">
-          <DisplayAvatar avatar={avatar} />
           {data.map((item, index) => (
             <form key={item.id}>
               <Item
@@ -114,7 +194,7 @@ const DisplayGenInfo = ({
                 category="GENINFO"
                 inputType="email"
                 id={item.id}
-                displaySymbol={displaySymbol(email)}
+                displaySymbol={displaySymbol(email, "email")}
               />
               <Item
                 item={item.mobile}
@@ -125,7 +205,7 @@ const DisplayGenInfo = ({
                 category="GENINFO"
                 inputType="text"
                 id={item.id}
-                displaySymbol={displaySymbol(mobile)}
+                displaySymbol={displaySymbol(mobile, "mobile")}
               />
               <Item
                 item={item.city}
@@ -136,7 +216,7 @@ const DisplayGenInfo = ({
                 category="GENINFO"
                 inputType="text"
                 id={item.id}
-                displaySymbol={displaySymbol(city)}
+                displaySymbol={displaySymbol(city, "email")}
               />
               <Item
                 item={item.summary}
@@ -149,27 +229,14 @@ const DisplayGenInfo = ({
                 id={item.id}
               />
               <br />
-              {item.isEdit ? (
-                <button
-                  className="saveEditButton"
-                  onClick={(e) => handleEdit(e, item, "GENINFO_SAVE")}
-                >
-                  Save
-                </button>
-              ) : (
-                <button
-                  className="editButton"
-                  onClick={(e) => handleEdit(e, item, "GENINFO")}
-                >
-                  Edit
-                </button>
-              )}
-              <button
-                className="delButton"
-                onClick={() => onRemoveItem(item, "GENINFO")}
-              >
-                Delete
-              </button>
+              <OptionButtons
+                item={item}
+                handleEdit={handleEdit}
+                onRemoveItem={onRemoveItem}
+                saveArg="GENINFO_SAVE"
+                editArg="GENINFO"
+                delArg="GENINFO"
+              />
             </form>
           ))}
         </div>
@@ -178,7 +245,14 @@ const DisplayGenInfo = ({
   }
 };
 
-const DisplayJobs = ({ data, onRemoveItem, handleEdit, handleTextUpdate }) => {
+const DisplayJobs = ({
+  data,
+  onRemoveItem,
+  handleEdit,
+  handleTextUpdate,
+  checkBox,
+  handleCurrentUpdate,
+}) => {
   if (!data.length) {
     return null;
   } else {
@@ -229,30 +303,19 @@ const DisplayJobs = ({ data, onRemoveItem, handleEdit, handleTextUpdate }) => {
                 category="JOBS"
                 inputType="date"
                 id={item.id}
+                handleCurrentUpdate={handleCurrentUpdate}
+                checkBox={checkBox}
               />
               <br />
-              {item.isEdit ? (
-                <button
-                  className="saveEditButton"
-                  onClick={(e) => handleEdit(e, item, "JOBS_SAVE")}
-                >
-                  Save
-                </button>
-              ) : (
-                <button
-                  className="editButton"
-                  onClick={(e) => handleEdit(e, item, "JOBS")}
-                >
-                  Edit
-                </button>
-              )}
-
-              <button
-                className="delButton"
-                onClick={() => onRemoveItem(item, "JOBS")}
-              >
-                Delete
-              </button>
+              {/* saveArg, editArg, delArg  */}
+              <OptionButtons
+                item={item}
+                handleEdit={handleEdit}
+                onRemoveItem={onRemoveItem}
+                saveArg="JOBS_SAVE"
+                editArg="JOBS"
+                delArg="JOBS"
+              />
             </form>
           ))}
         </div>
@@ -266,6 +329,8 @@ const DisplayEducation = ({
   onRemoveItem,
   handleEdit,
   handleTextUpdate,
+  checkBox,
+  handleCurrentUpdate,
 }) => {
   if (!data.length) {
     return null;
@@ -315,29 +380,18 @@ const DisplayEducation = ({
                 category="EDUCATION"
                 inputType="date"
                 id={item.id}
+                handleCurrentUpdate={handleCurrentUpdate}
+                checkBox={checkBox}
               />
               <br />
-              {item.isEdit ? (
-                <button
-                  className="saveEditButton"
-                  onClick={(e) => handleEdit(e, item, "EDUCATION_SAVE")}
-                >
-                  Save
-                </button>
-              ) : (
-                <button
-                  className="editButton"
-                  onClick={(e) => handleEdit(e, item, "EDUCATION")}
-                >
-                  Edit
-                </button>
-              )}
-              <button
-                className="delButton"
-                onClick={() => onRemoveItem(item, "EDUCATION")}
-              >
-                Delete
-              </button>
+              <OptionButtons
+                item={item}
+                handleEdit={handleEdit}
+                onRemoveItem={onRemoveItem}
+                saveArg="EDUCATION_SAVE"
+                editArg="EDUCATION"
+                delArg="EDUCATION"
+              />
             </form>
           ))}
         </div>

@@ -18,16 +18,13 @@ import {
   initialGenInfo,
   initialJobs,
   initialEducation,
-  initialAvatar
 } from "./components/initialStates";
 
 /*TODO:
-- CSS styling
+- CSS styling (50%)
 - Sort out autofocus by using useEffect
-- Add form validation
-- Add avatar functionality
-- add header 
 - add footer (include flat icons credit)
+- change form states into useReducers
 */
 
 function App() {
@@ -60,9 +57,34 @@ function App() {
     });
   };
 
+  const currentJobSelect = (e) => {
+    // const currentDate = new Date();
+    // const date = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()}`;
+    // console.log(e);
+    setCheckBoxJob(!checkBoxJob);
+    if (e.target.checked === true) {
+      dispatchJobs({
+        type: "HANDLE_JOBS_TEXT",
+        field: e.target.name,
+        payload: "Present",
+        id: e.target.id,
+      });
+    }
+  };
+
+  const currentEducationSelect = (e) => {
+    setCheckBoxEducation(!checkBoxEducation);
+    if (e.target.checked === true) {
+      dispatchEducation({
+        type: "HANDLE_EDUCATION_TEXT",
+        field: e.target.name,
+        payload: "Present",
+        id: e.target.id,
+      });
+    }
+  };
+
   const handleImgUpload = (e) => {
-
-
     setAvatarImg({ file: URL.createObjectURL(e.target.files[0]) });
   };
 
@@ -91,11 +113,38 @@ function App() {
         id: e.target.id,
       });
   };
+
+  const handleCurrentUpdateJob = (e) => {
+    // console.log(e.target.name);
+    setEditCheckBoxJob(!checkBoxEditJob);
+    if (e.target.checked === true) {
+      dispatchJobs({
+        type: "JOBS_UPDATE",
+        field: e.target.name,
+        payload: "Present",
+        id: e.target.id,
+      });
+    }
+  };
+
+  const handleCurrentUpdateEducation = (e) => {
+    setEditCheckBoxEducation(!checkBoxEditEducation);
+    if (e.target.checked === true) {
+      dispatchEducation({
+        type: "EDUCATION_UPDATE",
+        field: e.target.name,
+        payload: "Present",
+        id: e.target.id,
+      });
+    }
+  };
   // submit handlers
 
   const handleGeneralSubmit = (e) => {
     e.preventDefault();
+
     let { name, email, mobile, city, isEdit, isSubmit, summary } = genInfo;
+
     let id = uniqid();
     let obj = { name, email, mobile, city, id, isEdit, isSubmit, summary };
 
@@ -106,7 +155,7 @@ function App() {
   };
 
   const handleJobSubmit = (e) => {
-    console.log(e);
+    // console.log(e);
 
     e.preventDefault();
     let { company, position, startDate, endDate, isEdit, isSubmit } = jobs;
@@ -117,6 +166,8 @@ function App() {
       type: "JOBS_SUBMIT",
       payload: obj,
     });
+    // Clear current checkbox when submitted
+    setCheckBoxJob(false);
   };
 
   const handleEducationSubmit = (e) => {
@@ -129,9 +180,9 @@ function App() {
       type: "EDUCATION_SUBMIT",
       payload: obj,
     });
+    // Clear current checkbox when submitted
+    setCheckBoxEducation(false);
   };
-
-
 
   // delete handler
 
@@ -214,12 +265,20 @@ function App() {
     JSON.parse(localStorage.getItem("myLocalEducation")) || initialEducation
   );
 
-    // Img state 
+  // 'Current' Checkbox state handlers for jobs forms and jobs display
+  const [checkBoxJob, setCheckBoxJob] = React.useState(false);
+  const [checkBoxEditJob, setEditCheckBoxJob] = React.useState(false);
 
-  const [avatarImg, setAvatarImg] = useState({file: null});
+  // 'Current' Checkbox state handlers for education forms and education disp;ay
+  const [checkBoxEducation, setCheckBoxEducation] = React.useState(false);
+  const [checkBoxEditEducation, setEditCheckBoxEducation] =
+    React.useState(false);
 
+  // Img state
 
-  // useEffect hooks to set localStorage 
+  const [avatarImg, setAvatarImg] = useState({ file: null });
+
+  // useEffect hooks to set localStorage
   React.useEffect(() => {
     localStorage.setItem("myLocalGenInfo", JSON.stringify(genInfo));
   }, [genInfo]);
@@ -232,74 +291,90 @@ function App() {
     localStorage.setItem("myLocalEducation", JSON.stringify(education));
   }, [education]);
 
-
-  // React.useEffect(() => {
-  //   localStorage.setItem("myLocalAvatar", JSON.stringify(avatarImg))
-  // }, [avatarImg])
-
   return (
-    <div className="App">
-      <div className="wrapper">
-        <h1 className="title">CV Builder</h1>
-        <div class="row">
-          <div className="column">
-            <div className="column-form">
-              {/* <input type="file" onChange={handleImgUpload} /> */}
-              {/* <img src={avatarImg.file} className="avatar" alt="avatar"/> */}
-              <GeneralInfo
-                onFormInput={handleGeneralTextChange}
-                formSubmit={handleGeneralSubmit}
-                genValue={genInfo}
-                imgHandler={handleImgUpload}
+    <>
+      <div className="App">
+        <div className="wrapper">
+          <h1 className="title">CV Builder</h1>
+          <div class="row">
+            <div className="column">
+              <div className="column-form">
+                <GeneralInfo
+                  onFormInput={handleGeneralTextChange}
+                  formSubmit={handleGeneralSubmit}
+                  genValue={genInfo}
+                  imgHandler={handleImgUpload}
+                />
+                <WorkExperience
+                  onFormInput={handleJobTextChange}
+                  formSubmit={handleJobSubmit}
+                  jobValue={jobs}
+                  currentSelect={currentJobSelect}
+                  checkBox={checkBoxJob}
+                />
 
-              />
-              <WorkExperience
-                onFormInput={handleJobTextChange}
-                formSubmit={handleJobSubmit}
-                jobValue={jobs}
-              />
-
-              <EducationalExperience
-                onFormInput={handleEducationChange}
-                formSubmit={handleEducationSubmit}
-                educationValue={education}
-              />
+                <EducationalExperience
+                  onFormInput={handleEducationChange}
+                  formSubmit={handleEducationSubmit}
+                  educationValue={education}
+                  currentSelect={currentEducationSelect}
+                  checkBox={checkBoxEducation}
+                />
+              </div>
+              <br />
+              <div className="column-form">
+                <button onClick={handlePrint}>Save</button>
+              </div>
             </div>
-            <br />
-            <button onClick={handlePrint}>Save</button>
-          </div>
-          <div className="column">
-            <div className="column-display" ref={componentRef}>
-              <DisplayGenInfo
-                data={genInfo.data}
-                onRemoveItem={deleteDisplay}
-                handleEdit={handleEdit}
-                isEdit={genInfo.data}
-                handleTextUpdate={handleTextUpdate}
-                avatar={avatarImg.file}
-              />
+            <div className="column">
+              <div className="column-display" ref={componentRef}>
+                <DisplayGenInfo
+                  data={genInfo.data}
+                  onRemoveItem={deleteDisplay}
+                  handleEdit={handleEdit}
+                  isEdit={genInfo.data}
+                  handleTextUpdate={handleTextUpdate}
+                  avatar={avatarImg.file}
+                />
 
-              <DisplayJobs
-                data={jobs.data}
-                onRemoveItem={deleteDisplay}
-                handleEdit={handleEdit}
-                isEdit={jobs.data}
-                handleTextUpdate={handleTextUpdate}
-              />
+                <DisplayJobs
+                  data={jobs.data}
+                  onRemoveItem={deleteDisplay}
+                  handleEdit={handleEdit}
+                  isEdit={jobs.data}
+                  handleTextUpdate={handleTextUpdate}
+                  handleCurrentUpdate={handleCurrentUpdateJob}
+                  checkBox={checkBoxEditJob}
+                />
 
-              <DisplayEducation
-                data={education.data}
-                onRemoveItem={deleteDisplay}
-                handleEdit={handleEdit}
-                isEdit={education.data}
-                handleTextUpdate={handleTextUpdate}
-              />
-              
+                <DisplayEducation
+                  data={education.data}
+                  onRemoveItem={deleteDisplay}
+                  handleEdit={handleEdit}
+                  isEdit={education.data}
+                  handleTextUpdate={handleTextUpdate}
+                  handleCurrentUpdate={handleCurrentUpdateEducation}
+                  checkBox={checkBoxEditEducation}
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <div className="footer">
+        <h1>Copyright ccjohnst </h1>
+        <div>
+          Icons made by{" "}
+          <a href="https://www.freepik.com" title="Freepik">
+            Freepik
+          </a>{" "}
+          from{" "}
+          <a href="https://www.flaticon.com/" title="Flaticon">
+            www.flaticon.com
+          </a>
+        </div>
+      </div>
+    </>
   );
 }
 

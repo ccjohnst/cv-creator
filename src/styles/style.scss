@@ -1,6 +1,11 @@
 @import "./print";
 @import "./variables";
 
+@mixin formTheme {
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
 
 body {
   margin: 0;
@@ -9,6 +14,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100px;
 }
 
 code {
@@ -22,11 +28,11 @@ code {
 //   // padding-left: 130px
 // }
 
-// .genInfo {
-//   // outline-style: solid;
-//   // background-color: grey;
-//   // padding-left: 10px
-// }
+.genInfo {
+  // outline-style: solid;
+  // background-color: grey;
+  padding-left: 130px;
+}
 
 // .education {
 //   // outline-style: solid;
@@ -60,13 +66,39 @@ code {
 
 .title {
   text-align: center;
+  background-color: rgb(23, 172, 177);
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
+
+.footer {
+  background-color: rgb(23, 172, 177);
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  border-top: 5px solid;
+  text-align: center;
+}
+
+// div.footer {
+//   position: absolute;
+//   width: 100%;
+//   bottom: 0; /* stick to bottom */
+//   background: rgb(23, 172, 177);
+//   // border-top: 6px double gray;
+// }
+// div.footer p {
+//   padding: 1em;
+//   margin: 0;
+// }
 
 .name {
   font-size: xx-large;
 }
-
-
 
 .avatar {
   width: 120px;
@@ -74,7 +106,6 @@ code {
   border-radius: 50%;
   float: left;
   left: 50%;
-
 }
 
 .cvName {
@@ -84,7 +115,9 @@ code {
 }
 
 .column-display {
-  padding-top:10px;
-  padding-left: 10px;
-  padding-right: 10px;
+  @include formTheme;
+}
+
+.column-form {
+  @include formTheme;
 }

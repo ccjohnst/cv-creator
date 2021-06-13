@@ -34,5 +34,7 @@ const initialAvatar ={
   file: null
 }
 
-export { initialGenInfo, initialJobs, initialEducation, initialAvatar };
+
+
+export { initialGenInfo, initialJobs, initialEducation, initialAvatar};
 

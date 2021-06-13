@@ -2,7 +2,7 @@ import { GeneralForm } from "./forms";
 
 function GeneralInfo({ onFormInput, formSubmit, genValue, imgHandler}) {
   return (
-    <>
+    <div className="generalForm">
       <h2>General Info</h2>
       <GeneralForm
         onFormInput={onFormInput}
@@ -10,7 +10,7 @@ function GeneralInfo({ onFormInput, formSubmit, genValue, imgHandler}) {
         genValue={genValue}
         imgHandler={imgHandler}
       />
-    </>
+    </div>
   );
 }
 

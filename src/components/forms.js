@@ -4,6 +4,8 @@ const InputWithLabel = ({
   children,
   inputValue,
   inputType,
+  currentSelect,
+  checkBox,
 }) => {
   // const displaySummary = () => {
   //   if (summary === "name")
@@ -27,10 +29,22 @@ const InputWithLabel = ({
           value={inputValue}
         ></input>
       )}
+      {name === "endDate" && (
+        <label>
+          Current
+          <input
+            name={name}
+            onChange={currentSelect}
+            type="checkbox"
+            checked={checkBox}
+          ></input>
+        </label>
+      )}
       <br />
     </>
   );
 };
+
 
 const SelectAvatar = ({ imgHandler }) => {
   return (
@@ -94,7 +108,14 @@ const GeneralForm = ({ onFormInput, formSubmit, genValue, imgHandler }) => {
   );
 };
 
-const JobForm = ({ onFormInput, formSubmit, jobValue }) => {
+
+const JobForm = ({
+  onFormInput,
+  formSubmit,
+  jobValue,
+  currentSelect,
+  checkBox,
+}) => {
   return (
     <>
       <form>
@@ -127,6 +148,8 @@ const JobForm = ({ onFormInput, formSubmit, jobValue }) => {
           onInputChange={onFormInput}
           inputValue={jobValue.endDate}
           inputType="date"
+          currentSelect={currentSelect}
+          checkBox={checkBox}
         >
           <strong>End Date</strong>
         </InputWithLabel>
@@ -138,7 +161,7 @@ const JobForm = ({ onFormInput, formSubmit, jobValue }) => {
   );
 };
 
-const EducationForm = ({ onFormInput, formSubmit, educationValue }) => {
+const EducationForm = ({ onFormInput, formSubmit, educationValue, currentSelect, checkBox }) => {
   return (
     <>
       <InputWithLabel
@@ -170,7 +193,10 @@ const EducationForm = ({ onFormInput, formSubmit, educationValue }) => {
         onInputChange={onFormInput}
         inputValue={educationValue.endDate}
         inputType="date"
-      >
+        currentSelect={currentSelect}
+        checkBox={checkBox}
+
+>
         <strong>End Date</strong>
       </InputWithLabel>
       <button type="submit" onClick={formSubmit}>
