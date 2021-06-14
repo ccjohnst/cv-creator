@@ -19,12 +19,12 @@ import {
   initialJobs,
   initialEducation,
 } from "./components/initialStates";
+import gitHub from "./assets/thumbnails/GitHub-Mark-32px.png";
 
 /*TODO:
 - CSS styling (50%)
 - Sort out autofocus by using useEffect
 - add footer (include flat icons credit)
-- change form states into useReducers
 */
 
 function App() {
@@ -321,12 +321,15 @@ function App() {
                   checkBox={checkBoxEducation}
                 />
               </div>
-              <br />
               <div className="column-form">
-                <button onClick={handlePrint}>Save</button>
+                <button className="pdfButton" onClick={handlePrint}>
+                  Save as PDF
+                </button>
+                <br />
               </div>
             </div>
             <div className="column">
+              <h2 className="preview">Preview</h2>
               <div className="column-display" ref={componentRef}>
                 <DisplayGenInfo
                   data={genInfo.data}
@@ -362,7 +365,17 @@ function App() {
         </div>
       </div>
       <div className="footer">
-        <h1>Copyright ccjohnst </h1>
+        <h1 className="gitHubIcon">
+          Copyright © 2021{" "}
+          <a
+            href="https://github.com/ccjohnst/"
+            target="_blank"
+            rel="noopener noreferrer"
+            
+          >
+            ccjohnst <img src={gitHub} alt="github logo"/>
+          </a>{" "}
+        </h1>
         <div>
           Icons made by{" "}
           <a href="https://www.freepik.com" title="Freepik">

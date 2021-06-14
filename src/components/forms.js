@@ -13,6 +13,7 @@ const InputWithLabel = ({
   return (
     <>
       <label>{children}</label>
+      <br />
       &nbsp;
       {name === "summary" ? (
         <textarea
@@ -29,6 +30,7 @@ const InputWithLabel = ({
           value={inputValue}
         ></input>
       )}
+      <br />
       {name === "endDate" && (
         <label>
           Current
@@ -45,11 +47,23 @@ const InputWithLabel = ({
   );
 };
 
+const SaveButton = ({ formSubmit }) => {
+  return (
+    <button className="submitButton" type="submit" onClick={formSubmit}>
+      Submit
+    </button>
+  );
+};
 
 const SelectAvatar = ({ imgHandler }) => {
   return (
     <>
-      <input type="file" onChange={(e) => imgHandler(e)} />
+      <strong>Avatar </strong>
+      <input
+        classname="avatarSelect"
+        type="file"
+        onChange={(e) => imgHandler(e)}
+      />
     </>
   );
 };
@@ -100,14 +114,11 @@ const GeneralForm = ({ onFormInput, formSubmit, genValue, imgHandler }) => {
         >
           <strong>Summary</strong>
         </InputWithLabel>
-        <button type="submit" onClick={formSubmit}>
-          Submit
-        </button>
+        <SaveButton formSubmit={formSubmit} />
       </form>
     </>
   );
 };
-
 
 const JobForm = ({
   onFormInput,
@@ -153,15 +164,19 @@ const JobForm = ({
         >
           <strong>End Date</strong>
         </InputWithLabel>
-        <button type="submit" onClick={formSubmit}>
-          Submit
-        </button>
+        <SaveButton formSubmit={formSubmit} />
       </form>
     </>
   );
 };
 
-const EducationForm = ({ onFormInput, formSubmit, educationValue, currentSelect, checkBox }) => {
+const EducationForm = ({
+  onFormInput,
+  formSubmit,
+  educationValue,
+  currentSelect,
+  checkBox,
+}) => {
   return (
     <>
       <InputWithLabel
@@ -195,13 +210,10 @@ const EducationForm = ({ onFormInput, formSubmit, educationValue, currentSelect,
         inputType="date"
         currentSelect={currentSelect}
         checkBox={checkBox}
-
->
+      >
         <strong>End Date</strong>
       </InputWithLabel>
-      <button type="submit" onClick={formSubmit}>
-        Submit
-      </button>
+      <SaveButton formSubmit={formSubmit} />
     </>
   );
 };

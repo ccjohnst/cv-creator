@@ -3,6 +3,7 @@ import city from "../assets/thumbnails/city.svg";
 import mobile from "../assets/thumbnails/mobile.svg";
 import email from "../assets/thumbnails/email.svg";
 
+
 const displaySymbol = (symbol, altName) => (
   <img src={symbol} alt={altName} style={{ width: "20px", height: "20px" }} />
 );
@@ -52,7 +53,7 @@ const OptionButtons = ({
     <>
       {item.isEdit ? (
         <button
-          className="saveEditButton"
+          className="submitButton"
           onClick={(e) => handleEdit(e, item, saveArg)}
         >
           Save
@@ -112,6 +113,7 @@ const Item = ({
             category={category}
             onChange={(e) => handleTextUpdate(e, name, category)}
             id={id}
+            placeHolder={!titleName ? name  : null}
           ></input>
         )}
         <DisplayChecked

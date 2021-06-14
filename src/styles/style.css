@@ -38,16 +38,76 @@ code {
 .delButton {
   background-color: #c03e3e;
   padding: 15px 32px;
+  text-decoration: none;
+  border: none;
+  border-radius: 2px;
+  text: white;
+}
+
+.delButton:hover {
+  cursor: pointer;
+  background-color: #da4545;
+}
+
+.delButton:active {
+  background-color: #722525;
+  -webkit-box-shadow: 5px;
+          box-shadow: 5px;
+  -webkit-transform: translateY(4px);
+          transform: translateY(4px);
+}
+
+.submitButton {
+  background-color: rgba(31, 214, 31, 0.527);
+  padding: 15px 32px;
+  text-decoration: none;
+  border: none;
+  border-radius: 2px;
+  text: white;
+}
+
+.submitButton:hover {
+  cursor: pointer;
+  background-color: rgba(75, 223, 75, 0.527);
+}
+
+.submitButton:active {
+  background-color: rgba(27, 83, 27, 0.527);
+  -webkit-box-shadow: 5px;
+          box-shadow: 5px;
+  -webkit-transform: translateY(4px);
+          transform: translateY(4px);
 }
 
 .editButton {
   background-color: rgba(160, 180, 199, 0.801);
   padding: 15px 32px;
+  text-decoration: none;
+  border: none;
+  border-radius: 2px;
+  text: white;
+}
+
+.editButton:hover {
+  cursor: pointer;
+  background-color: rgba(175, 196, 216, 0.801);
+}
+
+.editButton:active {
+  background-color: rgba(98, 115, 129, 0.801);
+  -webkit-box-shadow: 5px;
+          box-shadow: 5px;
+  -webkit-transform: translateY(4px);
+          transform: translateY(4px);
 }
 
 .saveEditButton {
   background-color: rgba(31, 214, 31, 0.527);
   padding: 15px 32px;
+  text-decoration: none;
+  border: none;
+  border-radius: 2px;
+  text: white;
 }
 
 .row {
@@ -69,6 +129,8 @@ code {
   margin: auto;
   padding-top: 10px;
   padding-bottom: 10px;
+  position: relative;
+  border-bottom: 5px solid;
 }
 
 .footer {
@@ -110,5 +172,57 @@ code {
   padding-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
+}
+
+.column-form input :not(.avatarSelector) {
+  width: 50%;
+}
+
+.gitHubIcon a:link {
+  text-decoration: none;
+  color: black;
+}
+
+.gitHubIcon a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+.gitHubIcon a:active {
+  text-decoration: none;
+  color: black;
+}
+
+.gitHubIcon a:hover {
+  text-decoration: none;
+  color: black;
+  opacity: 0.75;
+}
+
+.pdfButton {
+  padding: 15px 400px;
+  background-color: #477e97;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 2px;
+  text: white;
+}
+
+.pdfButton:hover {
+  cursor: pointer;
+  background-color: #5294b3;
+}
+
+.pdfButton:active {
+  background-color: #305769;
+  -webkit-box-shadow: 5px;
+          box-shadow: 5px;
+  -webkit-transform: translateY(4px);
+          transform: translateY(4px);
+}
+
+.preview {
+  text-align: center;
 }
 /*# sourceMappingURL=style.css.map */
