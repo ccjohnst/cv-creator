@@ -58,7 +58,7 @@ const SaveButton = ({ formSubmit }) => {
 const SelectAvatar = ({ imgHandler }) => {
   return (
     <>
-      <strong>Avatar </strong>
+      <strong>Profile Picture </strong>
       <input
         classname="avatarSelect"
         type="file"

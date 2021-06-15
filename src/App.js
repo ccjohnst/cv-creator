@@ -21,11 +21,10 @@ import {
 } from "./components/initialStates";
 import gitHub from "./assets/thumbnails/GitHub-Mark-32px.png";
 
-/*TODO:
-- CSS styling (50%)
-- Sort out autofocus by using useEffect
-- add footer (include flat icons credit)
+/* 
+- Add mobile view
 */
+
 
 function App() {
   const componentRef = useRef();

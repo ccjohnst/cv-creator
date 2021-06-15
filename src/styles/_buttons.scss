@@ -1,0 +1,71 @@
+.delButton {
+  background-color: rgb(192, 62, 62);
+  padding: $btnPadding;
+  @include buttonTheme;
+}
+
+.delButton:hover {
+  cursor: pointer;
+  background-color: rgb(218, 69, 69);
+}
+
+.delButton:active {
+  background-color: rgb(114, 37, 37);
+  box-shadow: 5px;
+  transform: translateY(4px);
+}
+.submitButton {
+  background-color: rgba(31, 214, 31, 0.527);
+  padding: $btnPadding;
+  @include buttonTheme;
+}
+
+.submitButton:hover {
+  cursor: pointer;
+  background-color: rgba(75, 223, 75, 0.527);
+}
+.submitButton:active {
+  background-color: rgba(27, 83, 27, 0.527);
+  box-shadow: 5px;
+  transform: translateY(4px);
+}
+.editButton {
+  background-color: rgba(160, 180, 199, 0.801);
+  padding: $btnPadding;
+  @include buttonTheme;
+}
+
+.editButton:hover {
+  cursor: pointer;
+  background-color: rgba(175, 196, 216, 0.801);
+}
+
+.editButton:active {
+  background-color: rgba(98, 115, 129, 0.801);
+  box-shadow: 5px;
+  transform: translateY(4px);
+}
+
+.saveEditButton {
+  background-color: rgba(31, 214, 31, 0.527);
+  padding: $btnPadding;
+  @include buttonTheme;
+}
+
+.pdfButton {
+  padding: 15px 40px;
+  background-color: rgb(71, 126, 151);
+  color: white;
+  @include buttonTheme;
+}
+
+.pdfButton:hover {
+  cursor: pointer;
+  background-color: rgb(82, 148, 179);
+}
+
+.pdfButton:active {
+  background-color: rgb(48, 87, 105);
+  box-shadow: 5px;
+  transform: translateY(4px);
+}
