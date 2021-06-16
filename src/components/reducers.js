@@ -1,4 +1,4 @@
-// state reducer functions
+// state reducer functions fo
 const generalInfoReducer = (state, action) => {
   switch (action.type) {
     case "HANDLE_GENINFO_TEXT":
@@ -104,7 +104,6 @@ const jobsReducer = (state, action) => {
       const newArray = [...state.data];
       const index = newArray.findIndex((d) => action.id === d.id);
       newArray[index][action.field] = action.payload;
-      console.log(action.id);
       return {
         ...state,
         ...state.data,

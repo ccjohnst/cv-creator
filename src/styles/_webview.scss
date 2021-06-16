@@ -1,20 +1,19 @@
 @import "./mixins";
 
-@media  (max-width: 800px) {
-    .column-display{
-      @include formTheme;
-      position: relative;
-      margin: auto;
-      display: block;
-    }
-    .column-display {
-        @include formTheme;
-        position: relative;
-        margin: auto;
-        display: block
-      }
-      .row {
-        flex-direction: column;
-      }
-  
+@media (max-width: 800px) {
+  .column-display {
+    @include formTheme;
+    position: relative;
+    margin: auto;
+    display: block;
   }
+  .column-display {
+    @include formTheme;
+    position: relative;
+    margin: auto;
+    display: block;
+  }
+  .row {
+    flex-direction: column;
+  }
+}

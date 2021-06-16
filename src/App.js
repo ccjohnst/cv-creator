@@ -21,17 +21,14 @@ import {
 } from "./components/initialStates";
 import gitHub from "./assets/thumbnails/GitHub-Mark-32px.png";
 
-/* 
-- Add mobile view
-*/
-
-
 function App() {
+  // Refs to handle ReactToPrint
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
 
+  // Text handlers
   const handleGeneralTextChange = (e) => {
     dispatchGenInfo({
       type: "HANDLE_GENINFO_TEXT",
@@ -56,10 +53,8 @@ function App() {
     });
   };
 
+  // Handles  the 'current' checkbox is selected and changes state for job endDate to value of "current"
   const currentJobSelect = (e) => {
-    // const currentDate = new Date();
-    // const date = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()}`;
-    // console.log(e);
     setCheckBoxJob(!checkBoxJob);
     if (e.target.checked === true) {
       dispatchJobs({
@@ -70,6 +65,8 @@ function App() {
       });
     }
   };
+
+  // Handles  the 'current' checkbox is selected and changes state for education endDate to value of "current"
 
   const currentEducationSelect = (e) => {
     setCheckBoxEducation(!checkBoxEducation);
@@ -83,10 +80,12 @@ function App() {
     }
   };
 
+  // Handles our profile picture by turning into an Object Url and sets it in state
   const handleImgUpload = (e) => {
     setAvatarImg({ file: URL.createObjectURL(e.target.files[0]) });
   };
 
+  // Text update handlers
   const handleTextUpdate = (e, name, category) => {
     if (category === "GENINFO") {
       dispatchGenInfo({
@@ -114,7 +113,6 @@ function App() {
   };
 
   const handleCurrentUpdateJob = (e) => {
-    // console.log(e.target.name);
     setEditCheckBoxJob(!checkBoxEditJob);
     if (e.target.checked === true) {
       dispatchJobs({
@@ -137,6 +135,7 @@ function App() {
       });
     }
   };
+
   // submit handlers
 
   const handleGeneralSubmit = (e) => {
@@ -154,8 +153,6 @@ function App() {
   };
 
   const handleJobSubmit = (e) => {
-    // console.log(e);
-
     e.preventDefault();
     let { company, position, startDate, endDate, isEdit, isSubmit } = jobs;
     let id = uniqid();
@@ -295,7 +292,7 @@ function App() {
       <div className="App">
         <div className="wrapper">
           <h1 className="title">CV Builder</h1>
-          <div class="row">
+          <div className="row">
             <div className="column">
               <div className="column-form">
                 <GeneralInfo
@@ -370,9 +367,8 @@ function App() {
             href="https://github.com/ccjohnst/"
             target="_blank"
             rel="noopener noreferrer"
-            
           >
-            ccjohnst <img src={gitHub} alt="github logo"/>
+            ccjohnst <img src={gitHub} alt="github logo" />
           </a>{" "}
         </h1>
         <div>

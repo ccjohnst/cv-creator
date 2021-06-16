@@ -3,11 +3,14 @@ import city from "../assets/thumbnails/city.svg";
 import mobile from "../assets/thumbnails/mobile.svg";
 import email from "../assets/thumbnails/email.svg";
 
-
+// Display symbols for general info e.g. email symbol, mobile symbol
 const displaySymbol = (symbol, altName) => (
   <img src={symbol} alt={altName} style={{ width: "20px", height: "20px" }} />
 );
 
+/* Display 'current' checkbox for jobs and education that the user is still in.
+If the endDate is equal to current, ensure that the current checkbox is 
+already checked when the user edits the entry */
 const DisplayChecked = ({ name, item, handleCurrentUpdate, id }) => {
   if (name === "endDate" && item === "Present") {
     return (
@@ -41,6 +44,7 @@ const DisplayChecked = ({ name, item, handleCurrentUpdate, id }) => {
   }
 };
 
+/*Component containing the edit and delete option buttons for the form */
 const OptionButtons = ({
   item,
   handleEdit,
@@ -72,6 +76,8 @@ const OptionButtons = ({
     </>
   );
 };
+
+/* Component that takes each general info, job or education experience and displays them */
 const Item = ({
   item,
   name,
@@ -83,8 +89,6 @@ const Item = ({
   styleName,
   id,
   displaySymbol,
-  currentSelect,
-  checkBox,
   handleCurrentUpdate,
 }) => {
   if (isEdit === true) {
@@ -113,7 +117,7 @@ const Item = ({
             category={category}
             onChange={(e) => handleTextUpdate(e, name, category)}
             id={id}
-            placeHolder={!titleName ? name  : null}
+            placeholder={!titleName ? name : null}
           ></input>
         )}
         <DisplayChecked
@@ -147,8 +151,9 @@ const Item = ({
   );
 };
 
+/* This component displays the whatever avatar has been inputted and takes avatar as an argument. 
+If the user has not inputted an avatar, it uses a default avatar*/
 const DisplayAvatar = ({ avatar }) => {
-  console.log(avatar);
   return (
     <>
       <img
@@ -160,6 +165,9 @@ const DisplayAvatar = ({ avatar }) => {
     </>
   );
 };
+
+/* This component displays all submitted general info by using .map to generate Item components for each 
+field submitted on the form */
 
 const DisplayGenInfo = ({
   data,
@@ -247,6 +255,9 @@ const DisplayGenInfo = ({
   }
 };
 
+/* This component displays all submitted jobs by using .map to generate Item components for each 
+field submitted on the form */
+
 const DisplayJobs = ({
   data,
   onRemoveItem,
@@ -325,6 +336,10 @@ const DisplayJobs = ({
     );
   }
 };
+
+/* This component displays all submitted education info by using .map to generate Item components for each 
+field submitted on the form */
+
 
 const DisplayEducation = ({
   data,

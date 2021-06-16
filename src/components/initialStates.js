@@ -1,3 +1,5 @@
+// Initial states for useReducer hooks
+
 const initialGenInfo = {
   name: "",
   email: "",

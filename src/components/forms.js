@@ -1,3 +1,4 @@
+/* Component that handles the creation of each input*/
 const InputWithLabel = ({
   onInputChange,
   name,
@@ -7,9 +8,6 @@ const InputWithLabel = ({
   currentSelect,
   checkBox,
 }) => {
-  // const displaySummary = () => {
-  //   if (summary === "name")
-  // }
   return (
     <>
       <label>{children}</label>
@@ -47,6 +45,7 @@ const InputWithLabel = ({
   );
 };
 
+// Component that creates our save button for when a form is submitted
 const SaveButton = ({ formSubmit }) => {
   return (
     <button className="submitButton" type="submit" onClick={formSubmit}>
@@ -55,12 +54,13 @@ const SaveButton = ({ formSubmit }) => {
   );
 };
 
+// Component that handles the user's profile picture selection
 const SelectAvatar = ({ imgHandler }) => {
   return (
     <>
       <strong>Profile Picture </strong>
       <input
-        classname="avatarSelect"
+        className="avatarSelect"
         type="file"
         onChange={(e) => imgHandler(e)}
       />
@@ -68,6 +68,8 @@ const SelectAvatar = ({ imgHandler }) => {
   );
 };
 
+
+// Component that handles the creation of the general info form
 const GeneralForm = ({ onFormInput, formSubmit, genValue, imgHandler }) => {
   return (
     <>
@@ -120,6 +122,8 @@ const GeneralForm = ({ onFormInput, formSubmit, genValue, imgHandler }) => {
   );
 };
 
+
+// Component that handles the creation of the job form
 const JobForm = ({
   onFormInput,
   formSubmit,
@@ -170,6 +174,7 @@ const JobForm = ({
   );
 };
 
+// Component that handles creation of the education form
 const EducationForm = ({
   onFormInput,
   formSubmit,
