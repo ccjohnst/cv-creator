@@ -20,6 +20,7 @@ import {
   initialEducation,
 } from "./components/initialStates";
 import gitHub from "./assets/thumbnails/GitHub-Mark-32px.png";
+import "./styles/style.css";
 
 function App() {
   // Refs to handle ReactToPrint
