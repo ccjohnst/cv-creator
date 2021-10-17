@@ -21,8 +21,6 @@ npm start
 
 ## A reference point for how the API's within App.js function
 
----
-
 ## Form APIs
 
 ### General Info
@@ -71,8 +69,6 @@ npm start
 - `checkBox={}` - A prop to passdown the state of the 'Current' checkbox for Education Experience
 
 <br>
-
----
 
 ## Display APIs
 
@@ -128,8 +124,6 @@ npm start
 - `checkBox={}` - A prop to passdown the state of the 'Current' checkbox for Education Experience. Viewable when editing the item.
 
 <br>
-
----
 
 ## Built with
 
