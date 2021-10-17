@@ -19,7 +19,7 @@ npm start
 
 # Api Reference
 
-## A reference point for how the API's within App.js function
+A reference point for how the API's within App.js function
 
 ## Form APIs
 
@@ -130,3 +130,4 @@ npm start
 - [React](https://reactjs.org/)
 - [ReactToPrint](https://www.npmjs.com/package/react-to-print) - To allow users to save the CV as a PDF.
 - [uniqid](https://www.npmjs.com/package/uniqid)
+- [Sass](https://sass-lang.com/)
