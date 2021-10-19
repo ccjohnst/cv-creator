@@ -1,86 +1,85 @@
 .genInfo {
-  padding-left: 130px;
+	padding-left: 130px;
 }
 
 .row {
-  display: flex;
+	display: flex;
 }
 
 .column {
-  flex: 50%;
-  outline-style: solid;
+	flex: 50%;
+	outline-style: solid;
 }
 
 .title {
-  text-align: center;
-  background-color: rgb(23, 172, 177);
-  margin: auto;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  position: relative;
-  border-bottom: 5px solid;
+	text-align: center;
+	background-color: rgb(23, 172, 177);
+	margin: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	position: relative;
+	border-bottom: 5px solid;
 }
 
 .footer {
-  background-color: rgb(23, 172, 177);
-  margin: auto;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  height: 100%;
-  width: 100%;
-  position: relative;
-  border-top: 5px solid;
-  text-align: center;
+	background-color: rgb(23, 172, 177);
+	margin: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	height: 100%;
+	width: 100%;
+	position: relative;
+	border-top: 5px solid;
+	text-align: center;
 }
 
 .name {
-  font-size: xx-large;
+	font-size: xx-large;
 }
 
 .avatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  float: left;
-  left: 50%;
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	float: left;
+	left: 50%;
 }
 
 .cvName {
-  color: #1abc9c;
-  font-size: xx-large;
+	color: #1abc9c;
+	font-size: xx-large;
 }
 
 .column-display {
-  @include formTheme;
+	@include formTheme;
 }
 
 .column-form {
-  @include formTheme;
-}
+	@include formTheme;
 
-.column-form input :not(.avatarSelector) {
-  width: 50%;
+	input :not(.avatarSelector) {
+		width: 50%;
+	}
 }
 
 .gitHubIcon {
-  a:link {
-    @include linkTheme;
-  }
-  a:visited {
-    @include linkTheme;
-  }
-  a:active {
-    @include linkTheme;
-  }
-  a:hover {
-    @include linkTheme;
-    opacity: 0.75;
-    // img{
-    //   opacity: 0.75;
-    // }
-  }
+	a {
+		&:link {
+			@include linkTheme;
+		}
+		&:visited {
+			@include linkTheme;
+		}
+		&:active {
+			@include linkTheme;
+		}
+		&:hover {
+			@include linkTheme;
+			opacity: 0.75;
+		}
+	}
 }
 
 .preview {
-  text-align: center;
+	text-align: center;
 }
